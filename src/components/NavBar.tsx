@@ -6,7 +6,7 @@ interface NavBarProps {}
 
 export const NavBar: React.FC<NavBarProps> = ({}) => {
   return (
-    <Flex>
+    <Flex justify="flex-start">
       <Link href="/">
         <Button colorScheme="purple" mx={3}>
           Home
@@ -14,7 +14,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
       </Link>
       <Link href="/register">
         <Button colorScheme="purple" mx={3}>
-          Register
+          Sign Up
         </Button>
       </Link>
       <Link href="/login">

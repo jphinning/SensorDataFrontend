@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Heading, VStack } from "@chakra-ui/react";
+import { Flex, Heading, Box } from "@chakra-ui/react";
 
 import { DarkModeSwitch } from "./DarkModeSwitch";
 import { NavBar } from "./NavBar";
@@ -10,14 +10,14 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
-    <VStack>
-      <Flex mt={10}>
+    <Box mt={3}>
+      <NavBar />
+      <Flex mt={10} justify="center">
         <Heading as="h1" size="4xl" color="purple.500">
           {title}
         </Heading>
         <DarkModeSwitch />
       </Flex>
-      <NavBar />
-    </VStack>
+    </Box>
   );
 };
