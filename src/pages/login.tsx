@@ -1,10 +1,11 @@
 import React from "react";
-import { GenericForm } from "../components/GenericForm";
+
+import { LoginForm } from "../components/LoginForm";
 
 interface loginProps {}
 
 const login: React.FC<loginProps> = ({}) => {
-  return <GenericForm route="login" action="Login" />;
+  return <LoginForm />;
 };
 
 export default login;

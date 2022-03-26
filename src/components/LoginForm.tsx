@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   VStack,
   FormControl,
@@ -11,24 +11,21 @@ import {
 } from "@chakra-ui/react";
 import { Formik, Field, Form } from "formik";
 
-import { RegisterService } from "../service/RegisterService";
 import { ChakraAlert } from "./utils/ChakraAlert";
 import { Wrapper } from "./Wrapper";
-import axiosHttp from "../config/axiosHttp";
+import { Context } from "../context/AuthContext";
 
 type formStatus = "loading" | "complete" | "errored";
 
-interface GenericFormProps {
-  route: string;
-  action: "Login" | "Sign Up";
-}
+interface LoginFormProps {}
 
 interface formFields {
   email: string;
   password: string;
 }
 
-export const GenericForm: React.FC<GenericFormProps> = ({ route, action }) => {
+export const LoginForm: React.FC<LoginFormProps> = () => {
+  const { authenticated, handleLogin } = useContext(Context);
   const [serverStatus, setServerStatus] = useState<formStatus>(null);
 
   const handleFormSubmit = async (values: formFields, { resetForm }) => {
@@ -36,10 +33,9 @@ export const GenericForm: React.FC<GenericFormProps> = ({ route, action }) => {
 
     try {
       setServerStatus("loading");
-      await axiosHttp.post(route, {
-        email,
-        password,
-      });
+
+      await handleLogin({ email, password });
+
       setServerStatus("complete");
     } catch (error) {
       console.log(error);
@@ -62,17 +58,14 @@ export const GenericForm: React.FC<GenericFormProps> = ({ route, action }) => {
           <Form onSubmit={handleSubmit}>
             <VStack spacing={4} align="flex-start">
               {serverStatus === "errored" ? (
-                <ChakraAlert
-                  status="error"
-                  text="There was an error processing your request"
-                />
+                <ChakraAlert status="error" text="Wrong email or password" />
               ) : (
                 ""
               )}
               {serverStatus === "complete" ? (
                 <ChakraAlert
                   status="success"
-                  text="You're now registered! Please log in"
+                  text="You're now being redirected to your page"
                 />
               ) : (
                 ""
@@ -116,7 +109,7 @@ export const GenericForm: React.FC<GenericFormProps> = ({ route, action }) => {
                 Remember me?
               </Field>
               <Button type="submit" colorScheme="purple" isFullWidth>
-                {serverStatus === "loading" ? <Spinner /> : action}
+                {serverStatus === "loading" ? <Spinner /> : "Login"}
               </Button>
             </VStack>
           </Form>
