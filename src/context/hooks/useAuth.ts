@@ -38,7 +38,7 @@ export function useAuth() {
     localStorage.setItem("token", JSON.stringify(token));
     axiosHttp.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     setAuthenticated(true);
-    Router.push("/");
+    Router.push("/sensors");
   };
 
   const handleLogout = () => {

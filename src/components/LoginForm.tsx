@@ -33,7 +33,6 @@ export const LoginForm: React.FC<LoginFormProps> = () => {
 
     try {
       setServerStatus("loading");
-
       await handleLogin({ email, password });
 
       setServerStatus("complete");

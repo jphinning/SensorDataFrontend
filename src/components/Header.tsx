@@ -8,16 +8,17 @@ interface HeaderProps {
   title: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ title }) => {
+export const Header: React.FC<HeaderProps> = ({ title, children }) => {
   return (
-    <Box mt={3}>
+    <Flex mt={3} justifyContent="center" position="relative" height="100%">
       <NavBar />
-      <Flex mt={10} justify="center">
-        <Heading as="h1" size="4xl" color="purple.500">
+      <Box mt={10} mx="auto">
+        <Heading as="h1" size="4xl" color="purple.500" mx="400">
           {title}
         </Heading>
         <DarkModeSwitch />
-      </Flex>
-    </Box>
+        {children}
+      </Box>
+    </Flex>
   );
 };

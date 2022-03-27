@@ -10,8 +10,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <AuthProvider>
-        <Header title="Sensor Logger" />
-        <Component {...pageProps} />
+        <Header title="Sensor Logger">
+          <Component {...pageProps} />
+        </Header>
       </AuthProvider>
     </ChakraProvider>
   );
