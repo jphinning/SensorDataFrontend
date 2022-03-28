@@ -1,4 +1,4 @@
-import React, { Key, useContext, useEffect, useState } from "react";
+import React, { Key, useState } from "react";
 import {
   Table,
   Thead,
@@ -9,9 +9,12 @@ import {
   Progress,
   Center,
 } from "@chakra-ui/react";
+import { DropdownChakra } from "./utils/DropdownChakra";
 
 import { Wrapper } from "../components/Wrapper";
 import { useSensorData } from "../context/hooks/useSensorData";
+
+type orderProps = "ASC" | "DESC";
 
 interface ISensorDataItem {
   id: string;
@@ -34,21 +37,23 @@ export const formatDate = (date: string) => {
 };
 
 export const SensorView: React.FC = ({}) => {
-  const { sensorData } = useSensorData();
+  const [radioValue, setRadioValue] = useState<orderProps>("DESC");
+  const { sensorData } = useSensorData({ limit: "10", order: "DESC" });
+
+  console.log(radioValue);
 
   return (
     <Wrapper>
       <Center>{`Soil is ${
-        sensorData[0] ? parseInt(sensorData[sensorData.length - 1].data) : 0
-      }% moistered`}</Center>
+        sensorData[0] ? parseInt(sensorData[0].data) : 0
+      }% wet`}</Center>
       <Progress
         colorScheme="purple"
         hasStripe
-        value={
-          sensorData[0] ? parseInt(sensorData[sensorData.length - 1].data) : 0
-        }
+        value={sensorData[0] ? parseInt(sensorData[0].data) : 0}
       />
-      <Table size="md" mt="20">
+      <DropdownChakra radioValue={radioValue} setRadioValue={setRadioValue} />
+      <Table size="md">
         <Thead>
           <Tr>
             <Th>ID</Th>

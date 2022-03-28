@@ -12,13 +12,13 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
   return (
     <Flex
       direction="column"
-      position="absolute"
-      top="0"
-      left="5"
-      height="full"
       bgColor={"purple.600"}
       borderRadius="md"
       padding={5}
+      ml="2"
+      flex="0.35"
+      minHeight={"900"}
+      maxHeight={"900"}
     >
       <Link href="/">
         <Button colorScheme="purple" my={3}>
@@ -38,6 +38,14 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
         <Link href="/dataChart">
           <Button colorScheme="purple" my={3}>
             Data Chart
+          </Button>
+        </Link>
+      ) : null}
+
+      {authenticated ? (
+        <Link href="/userProfile">
+          <Button colorScheme="purple" my={3}>
+            User Profile
           </Button>
         </Link>
       ) : null}

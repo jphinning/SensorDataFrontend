@@ -9,17 +9,23 @@ export interface loginFields {
 }
 
 export function useAuth() {
+  const [userCredentials, setUserCredentials] = useState<loginFields>({
+    email: "",
+    password: "",
+  });
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const userEmail = localStorage.getItem("userEmail");
 
     if (token) {
       axiosHttp.defaults.headers.common["Authorization"] = `Bearer ${JSON.parse(
         token
       )}`;
       setAuthenticated(true);
+      setUserCredentials({ email: userEmail, password: "" });
     }
 
     setLoading(false);
@@ -36,8 +42,10 @@ export function useAuth() {
     });
 
     localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem("userEmail", JSON.stringify(email));
     axiosHttp.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     setAuthenticated(true);
+    setUserCredentials({ email, password });
     Router.push("/sensors");
   };
 
@@ -48,5 +56,5 @@ export function useAuth() {
     Router.push("/login");
   };
 
-  return { authenticated, loading, handleLogin, handleLogout };
+  return { authenticated, loading, userCredentials, handleLogin, handleLogout };
 }

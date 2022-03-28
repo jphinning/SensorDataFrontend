@@ -10,7 +10,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ title, children }) => {
   return (
-    <Flex mt={3} justifyContent="center" position="relative" height="100%">
+    <Flex mt={3}>
       <NavBar />
       <Box mt={10} mx="auto">
         <Heading as="h1" size="4xl" color="purple.500" mx="400">

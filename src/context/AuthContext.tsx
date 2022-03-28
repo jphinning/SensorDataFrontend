@@ -5,6 +5,7 @@ import { useAuth, loginFields } from "./hooks/useAuth";
 interface IAuthStatesContext {
   authenticated: Boolean;
   loading: Boolean;
+  userCredentials: loginFields;
   handleLogin: (authProps: loginFields) => Promise<void>;
   handleLogout: () => void;
 }
@@ -12,11 +13,18 @@ interface IAuthStatesContext {
 export const Context = createContext<IAuthStatesContext>(undefined);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const { authenticated, loading, handleLogin, handleLogout } = useAuth();
+  const { authenticated, loading, userCredentials, handleLogin, handleLogout } =
+    useAuth();
 
   return (
     <Context.Provider
-      value={{ loading, authenticated, handleLogin, handleLogout }}
+      value={{
+        loading,
+        authenticated,
+        userCredentials,
+        handleLogin,
+        handleLogout,
+      }}
     >
       {children}
     </Context.Provider>

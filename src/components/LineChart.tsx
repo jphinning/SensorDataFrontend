@@ -28,7 +28,7 @@ ChartJS.register(
 interface LineChartProps {}
 
 export const LineChart: React.FC<LineChartProps> = ({}) => {
-  const { sensorData } = useSensorData();
+  const { sensorData } = useSensorData({ limit: "all", order: "ASC" });
 
   const options = {
     responsive: true,
@@ -55,8 +55,8 @@ export const LineChart: React.FC<LineChartProps> = ({}) => {
       {
         label: "DataBase readings",
         data: allData.slice(-10),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: "#805AD5",
+        backgroundColor: "rgba(59, 43, 228, 0.6)",
       },
     ],
   };
