@@ -48,7 +48,7 @@ export const SensorView: React.FC = ({}) => {
         sensorData[0] ? parseInt(sensorData[0].data) : 0
       }% wet`}</Center>
       <Progress
-        colorScheme="purple"
+        colorScheme="facebook"
         hasStripe
         value={sensorData[0] ? parseInt(sensorData[0].data) : 0}
       />

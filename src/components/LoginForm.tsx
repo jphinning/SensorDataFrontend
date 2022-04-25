@@ -5,15 +5,18 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
-  Checkbox,
   Button,
   Spinner,
+  Heading,
+  Flex,
 } from "@chakra-ui/react";
 import { Formik, Field, Form } from "formik";
+import { FiRadio } from "react-icons/fi";
 
 import { ChakraAlert } from "./utils/ChakraAlert";
 import { Wrapper } from "./Wrapper";
 import { Context } from "../context/AuthContext";
+import Link from "next/link";
 
 type formStatus = "loading" | "complete" | "errored";
 
@@ -44,7 +47,20 @@ export const LoginForm: React.FC<LoginFormProps> = () => {
   };
 
   return (
-    <Wrapper variant="small">
+    <Wrapper
+      variant="small"
+      my="10vh"
+      padding="6"
+      boxShadow="lg"
+      borderRadius="xl"
+      bg="white"
+    >
+      <Flex justify={"center"} my="6">
+        <FiRadio />
+        <Heading>Sensor</Heading>
+        <Heading color="blue.700">Info</Heading>
+      </Flex>
+
       <Formik
         initialValues={{
           email: "",
@@ -90,8 +106,8 @@ export const LoginForm: React.FC<LoginFormProps> = () => {
                   validate={(value: string | any[]) => {
                     let error: string;
 
-                    if (value.length < 5) {
-                      error = "Password must contain at least 6 characters";
+                    if (value.length < 3) {
+                      error = "Password must contain at least 3 characters";
                     }
 
                     return error;
@@ -99,21 +115,19 @@ export const LoginForm: React.FC<LoginFormProps> = () => {
                 />
                 <FormErrorMessage>{errors.password}</FormErrorMessage>
               </FormControl>
-              <Field
-                as={Checkbox}
-                id="rememberMe"
-                name="rememberMe"
-                colorScheme="purple"
-              >
-                Remember me?
-              </Field>
-              <Button type="submit" colorScheme="purple" isFullWidth>
+
+              <Button type="submit" colorScheme="facebook" isFullWidth>
                 {serverStatus === "loading" ? <Spinner /> : "Login"}
               </Button>
             </VStack>
           </Form>
         )}
       </Formik>
+      <Link href="/register">
+        <Button type="submit" colorScheme="facebook" isFullWidth my="3">
+          SignUp
+        </Button>
+      </Link>
     </Wrapper>
   );
 };

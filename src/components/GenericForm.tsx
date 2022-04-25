@@ -5,16 +5,18 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
-  Checkbox,
   Button,
   Spinner,
+  Flex,
+  Heading,
 } from "@chakra-ui/react";
 import { Formik, Field, Form } from "formik";
+import { FiRadio } from "react-icons/fi";
 
-import { RegisterService } from "../service/RegisterService";
 import { ChakraAlert } from "./utils/ChakraAlert";
 import { Wrapper } from "./Wrapper";
 import axiosHttp from "../config/axiosHttp";
+import Link from "next/link";
 
 type formStatus = "loading" | "complete" | "errored";
 
@@ -24,6 +26,7 @@ interface GenericFormProps {
 }
 
 interface formFields {
+  name: string;
   email: string;
   password: string;
 }
@@ -32,11 +35,12 @@ export const GenericForm: React.FC<GenericFormProps> = ({ route, action }) => {
   const [serverStatus, setServerStatus] = useState<formStatus>(null);
 
   const handleFormSubmit = async (values: formFields, { resetForm }) => {
-    const { email, password } = values;
+    const { name, email, password } = values;
 
     try {
       setServerStatus("loading");
       await axiosHttp.post(route, {
+        name,
         email,
         password,
       });
@@ -49,9 +53,23 @@ export const GenericForm: React.FC<GenericFormProps> = ({ route, action }) => {
   };
 
   return (
-    <Wrapper variant="small">
+    <Wrapper
+      variant="small"
+      my="10vh"
+      padding="6"
+      boxShadow="lg"
+      borderRadius="xl"
+      bg="white"
+    >
+      <Flex justify={"center"} my="6">
+        <FiRadio />
+        <Heading>Sensor</Heading>
+        <Heading color="blue.700">Info</Heading>
+      </Flex>
+
       <Formik
         initialValues={{
+          name: "",
           email: "",
           password: "",
           rememberMe: false,
@@ -78,6 +96,16 @@ export const GenericForm: React.FC<GenericFormProps> = ({ route, action }) => {
                 ""
               )}
               <FormControl>
+                <FormLabel htmlFor="name">Name</FormLabel>
+                <Field
+                  as={Input}
+                  id="name"
+                  name="name"
+                  type="name"
+                  variant="filled"
+                />
+              </FormControl>
+              <FormControl>
                 <FormLabel htmlFor="email">Email Address</FormLabel>
                 <Field
                   as={Input}
@@ -98,8 +126,8 @@ export const GenericForm: React.FC<GenericFormProps> = ({ route, action }) => {
                   validate={(value: string | any[]) => {
                     let error: string;
 
-                    if (value.length < 5) {
-                      error = "Password must contain at least 6 characters";
+                    if (value.length < 3) {
+                      error = "Password must contain at least 3 characters";
                     }
 
                     return error;
@@ -107,21 +135,19 @@ export const GenericForm: React.FC<GenericFormProps> = ({ route, action }) => {
                 />
                 <FormErrorMessage>{errors.password}</FormErrorMessage>
               </FormControl>
-              <Field
-                as={Checkbox}
-                id="rememberMe"
-                name="rememberMe"
-                colorScheme="purple"
-              >
-                Remember me?
-              </Field>
-              <Button type="submit" colorScheme="purple" isFullWidth>
+
+              <Button type="submit" colorScheme="facebook" isFullWidth>
                 {serverStatus === "loading" ? <Spinner /> : action}
               </Button>
             </VStack>
           </Form>
         )}
       </Formik>
+      <Link href="/login">
+        <Button type="submit" colorScheme="facebook" isFullWidth my="3">
+          Login
+        </Button>
+      </Link>
     </Wrapper>
   );
 };

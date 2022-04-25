@@ -1,15 +1,13 @@
-import React from "react";
-
+import { SensorView } from "../components/SensorView";
 import { CustomRoute } from "../components/CustomRoute";
 import { SidebarWithHeader } from "../components/dashboard/SidebarWithHeader";
-import { LineChart } from "../components/LineChart";
 
-const dataChart: React.FC = ({}) => {
+const DataTable: React.FC = ({}) => {
   return (
     <SidebarWithHeader>
-      <CustomRoute isPrivate={true} Component={LineChart} />
+      <CustomRoute isPrivate={true} Component={SensorView} />
     </SidebarWithHeader>
   );
 };
 
-export default dataChart;
+export default DataTable;

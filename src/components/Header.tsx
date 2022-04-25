@@ -1,7 +1,6 @@
 import React from "react";
 import { Flex, Heading, Box } from "@chakra-ui/react";
 
-import { DarkModeSwitch } from "./DarkModeSwitch";
 import { NavBar } from "./NavBar";
 
 interface HeaderProps {
@@ -10,13 +9,12 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ title, children }) => {
   return (
-    <Flex mt={3}>
+    <Flex>
       <NavBar />
       <Box mt={10} mx="auto">
-        <Heading as="h1" size="4xl" color="purple.500" mx="400">
+        <Heading as="h1" size="4xl" color="blue.700" mx="400">
           {title}
         </Heading>
-        <DarkModeSwitch />
         {children}
       </Box>
     </Flex>

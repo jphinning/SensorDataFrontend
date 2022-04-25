@@ -8,10 +8,17 @@ export interface loginFields {
   password: string;
 }
 
+export interface userModel {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export function useAuth() {
-  const [userCredentials, setUserCredentials] = useState<loginFields>({
+  const [userCredentials, setUserCredentials] = useState<userModel>({
     email: "",
     password: "",
+    name: "",
   });
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -19,13 +26,14 @@ export function useAuth() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userEmail = localStorage.getItem("userEmail");
+    const userName = localStorage.getItem("userName");
 
     if (token) {
       axiosHttp.defaults.headers.common["Authorization"] = `Bearer ${JSON.parse(
         token
       )}`;
       setAuthenticated(true);
-      setUserCredentials({ email: userEmail, password: "" });
+      setUserCredentials({ email: userEmail, password: "", name: userName });
     }
 
     setLoading(false);
@@ -35,7 +43,7 @@ export function useAuth() {
     const { email, password } = authProps;
 
     const {
-      data: { token },
+      data: { token, name },
     } = await axiosHttp.post("login", {
       email,
       password,
@@ -43,10 +51,11 @@ export function useAuth() {
 
     localStorage.setItem("token", JSON.stringify(token));
     localStorage.setItem("userEmail", JSON.stringify(email));
+    localStorage.setItem("userName", JSON.stringify(name));
     axiosHttp.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     setAuthenticated(true);
-    setUserCredentials({ email, password });
-    Router.push("/sensors");
+    setUserCredentials({ email, password, name });
+    Router.push("/");
   };
 
   const handleLogout = () => {

@@ -55,8 +55,8 @@ export const LineChart: React.FC<LineChartProps> = ({}) => {
       {
         label: "DataBase readings",
         data: allData.slice(-10),
-        borderColor: "#805AD5",
-        backgroundColor: "rgba(59, 43, 228, 0.6)",
+        borderColor: "#385898",
+        backgroundColor: "#2c7a7b",
       },
     ],
   };

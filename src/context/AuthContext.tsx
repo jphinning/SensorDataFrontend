@@ -1,11 +1,11 @@
 import React, { createContext } from "react";
 
-import { useAuth, loginFields } from "./hooks/useAuth";
+import { useAuth, loginFields, userModel } from "./hooks/useAuth";
 
 interface IAuthStatesContext {
   authenticated: Boolean;
   loading: Boolean;
-  userCredentials: loginFields;
+  userCredentials: userModel;
   handleLogin: (authProps: loginFields) => Promise<void>;
   handleLogout: () => void;
 }

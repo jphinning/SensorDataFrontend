@@ -12,23 +12,24 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
   return (
     <Flex
       direction="column"
-      bgColor={"purple.600"}
-      borderRadius="md"
+      bgColor={"blue.900"}
+      // borderRadius="md"
+      w="12vw"
       padding={5}
-      ml="2"
-      flex="0.35"
-      minHeight={"900"}
-      maxHeight={"900"}
+      // ml="2"
+      // flex="0.35"
+      h="100vh"
+      position="sticky"
     >
       <Link href="/">
-        <Button colorScheme="purple" my={3}>
+        <Button colorScheme="teal" my={3}>
           Home
         </Button>
       </Link>
 
       {authenticated ? (
         <Link href="/sensors">
-          <Button colorScheme="purple" my={3}>
+          <Button colorScheme="teal" my={3}>
             Sensor Information
           </Button>
         </Link>
@@ -36,7 +37,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
 
       {authenticated ? (
         <Link href="/dataChart">
-          <Button colorScheme="purple" my={3}>
+          <Button colorScheme="teal" my={3}>
             Data Chart
           </Button>
         </Link>
@@ -44,7 +45,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
 
       {authenticated ? (
         <Link href="/userProfile">
-          <Button colorScheme="purple" my={3}>
+          <Button colorScheme="teal" my={3}>
             User Profile
           </Button>
         </Link>
@@ -52,19 +53,19 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
 
       {!authenticated ? (
         <Link href="/register">
-          <Button colorScheme="purple" my={3}>
+          <Button colorScheme="teal" my={3}>
             Sign Up
           </Button>
         </Link>
       ) : null}
 
       {authenticated ? (
-        <Button colorScheme="purple" onClick={handleLogout} my={3}>
+        <Button colorScheme="teal" onClick={handleLogout} my={3}>
           Logout
         </Button>
       ) : (
         <Link href="/login">
-          <Button colorScheme="purple" my={3}>
+          <Button colorScheme="teal" my={3}>
             Login
           </Button>
         </Link>
