@@ -14,6 +14,8 @@ import { Line } from "react-chartjs-2";
 import { formatDate } from "./SensorView";
 import { Wrapper } from "./Wrapper";
 import { useSensorData } from "../context/hooks/useSensorData";
+import { Flex, Text } from "@chakra-ui/react";
+import { PageHeader } from "./dashboard/PageHeader";
 
 ChartJS.register(
   CategoryScale,
@@ -62,8 +64,13 @@ export const LineChart: React.FC<LineChartProps> = ({}) => {
   };
 
   return (
-    <Wrapper>
-      <Line options={options} data={data} />
-    </Wrapper>
+    <>
+      {/* Header */}
+      <PageHeader title="DATA CHART" route="DataChart" />
+
+      <Wrapper>
+        <Line options={options} data={data} />
+      </Wrapper>
+    </>
   );
 };

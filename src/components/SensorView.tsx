@@ -13,6 +13,7 @@ import { DropdownChakra } from "./utils/DropdownChakra";
 
 import { Wrapper } from "../components/Wrapper";
 import { useSensorData } from "../context/hooks/useSensorData";
+import { PageHeader } from "./dashboard/PageHeader";
 
 type orderProps = "ASC" | "DESC";
 
@@ -43,38 +44,42 @@ export const SensorView: React.FC = ({}) => {
   console.log(radioValue);
 
   return (
-    <Wrapper>
-      <Center>{`Soil is ${
-        sensorData[0] ? parseInt(sensorData[0].data) : 0
-      }% wet`}</Center>
-      <Progress
-        colorScheme="facebook"
-        hasStripe
-        value={sensorData[0] ? parseInt(sensorData[0].data) : 0}
-      />
-      <DropdownChakra radioValue={radioValue} setRadioValue={setRadioValue} />
-      <Table size="md">
-        <Thead>
-          <Tr>
-            <Th>ID</Th>
-            <Th>Data</Th>
-            <Th>Created At</Th>
-            <Th>Updated At</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {sensorData.map(
-            ({ id, data, createDateColumn, updateDateColumn }) => (
-              <Tr key={id as Key}>
-                <Td>{id}</Td>
-                <Td>{`${data} %`}</Td>
-                <Td>{formatDate(createDateColumn)}</Td>
-                <Td>{formatDate(updateDateColumn)}</Td>
-              </Tr>
-            )
-          )}
-        </Tbody>
-      </Table>
-    </Wrapper>
+    <>
+      <PageHeader title="Data Table" route="DataTable" />
+
+      <Wrapper>
+        <Center>{`Soil is ${
+          sensorData[0] ? parseInt(sensorData[0].data) : 0
+        }% wet`}</Center>
+        <Progress
+          colorScheme="facebook"
+          hasStripe
+          value={sensorData[0] ? parseInt(sensorData[0].data) : 0}
+        />
+        <DropdownChakra radioValue={radioValue} setRadioValue={setRadioValue} />
+        <Table size="md">
+          <Thead>
+            <Tr>
+              <Th>ID</Th>
+              <Th>Data</Th>
+              <Th>Created At</Th>
+              <Th>Updated At</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {sensorData.map(
+              ({ id, data, createDateColumn, updateDateColumn }) => (
+                <Tr key={id as Key}>
+                  <Td>{id}</Td>
+                  <Td>{`${data} %`}</Td>
+                  <Td>{formatDate(createDateColumn)}</Td>
+                  <Td>{formatDate(updateDateColumn)}</Td>
+                </Tr>
+              )
+            )}
+          </Tbody>
+        </Table>
+      </Wrapper>
+    </>
   );
 };

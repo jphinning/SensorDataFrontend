@@ -14,6 +14,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Context } from "../context/AuthContext";
+import { PageHeader } from "./dashboard/PageHeader";
 
 interface LandingPageProps {}
 
@@ -23,19 +24,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({}) => {
   return (
     <>
       {/* Header */}
-      <Flex justify="space-between" mx="5">
-        <Text color="gray.500" fontWeight="extrabold" fontSize="xl">
-          PROFILE
-        </Text>
-        <Flex justify="flex-end">
-          <Text color="blue.700" fontWeight="bold">
-            Home
-          </Text>
-          <Text color="gray.500" fontWeight="bold">
-            /Profile
-          </Text>
-        </Flex>
-      </Flex>
+      <PageHeader title="Profile" route="Profile" />
 
       {/* Body */}
       <Box bg="white" mx="5" boxShadow="md" my="5">

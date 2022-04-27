@@ -25,8 +25,8 @@ export function useAuth() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const userEmail = localStorage.getItem("userEmail");
-    const userName = localStorage.getItem("userName");
+    const userEmail = JSON.parse(localStorage.getItem("userEmail"));
+    const userName = JSON.parse(localStorage.getItem("userName"));
 
     if (token) {
       axiosHttp.defaults.headers.common["Authorization"] = `Bearer ${JSON.parse(
