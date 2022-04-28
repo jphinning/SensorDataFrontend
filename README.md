@@ -1,33 +1,31 @@
-# Example app with [chakra-ui](https://github.com/chakra-ui/chakra-ui) and TypeScript
+# Sensor Data Frontend 🖥
 
-This example features how to use [chakra-ui](https://github.com/chakra-ui/chakra-ui) as the component library within a Next.js app with TypeScript.
+ Made with Nextjs, React, and Chakra-UI. 
+ This is part of the Sensor Data project where we have a dashboard showcasing charts and tables with information that is being sent through a ESP32 remotely.
+ 
+ We have three different repositories for each chunk of the application: one for the backend, responsible for storing and retrieving data. The embedded part, where we process and send sensor data to the backend. And here, where where we aim to make a dashboard with resposive web pages with charts and tables for data visualisation.
+ 
+ If you want to see more details about the work made here, I suggest reading the dissertation bellow:  https://drive.google.com/file/d/1QdTXm1THeGy53-jOTIQcjbQoN6_9oql2/view?usp=sharing
 
-Next.js and chakra-ui have built-in TypeScript declarations, so we'll get autocompletion for their modules straight away.
+## Deployment  :computer:
 
-We are connecting the Next.js `_app.js` with `chakra-ui`'s Provider and theme so the pages can have app-wide dark/light mode. We are also creating some components which shows the usage of `chakra-ui`'s style props.
+See the app in action at https://sensor-data-frontend.vercel.app/login
 
-## Deploy your own
+## Requirements :rocket:
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-chakra-ui-typescript)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-chakra-ui-typescript&project-name=with-chakra-ui-typescript&repository-name=with-chakra-ui-typescript)
-
-## How to use
-
-### Using `create-next-app`
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-chakra-ui-typescript with-chakra-ui-typescript-app
-# or
-yarn create next-app --example with-chakra-ui-typescript with-chakra-ui-typescript-app
+```
+npm or yarn installed
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## How to Run it :running:
 
-## Notes
+```bash
+git clone git@github.com:jphinning/SensorDataFrontend.git
+cd SensorDataFrontend
+npm run dev
+```
 
-Chakra has supported Gradients and RTL in `v1.1`. To utilize RTL, [add RTL direction and swap](https://chakra-ui.com/docs/features/rtl-support).
+## App in action :coffee:
 
-If you don't have multi-direction app, you should make `<Html lang="ar" dir="rtl">` inside `_document.ts`.
+![Alt Text](https://media.giphy.com/media/XYlLsRYlswxVMeHnFA/giphy.gif)
+
